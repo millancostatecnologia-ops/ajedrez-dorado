@@ -23,4 +23,4 @@ Pasos:
     funciona también en modo avión.
 
 Para actualizar el juego más adelante: sube el nuevo index.html y, en sw.js,
-cambia 'ajedrez-dorado-v1' por 'ajedrez-dorado-v2' (y súbelo también).
+sube el número de versión de CACHE (ahora 'ajedrez-dorado-v3'; la próxima, v4) (y súbelo también).

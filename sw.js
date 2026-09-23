@@ -1,6 +1,6 @@
 // Ajedrez Dorado: caché para jugar sin conexión.
 // Si actualizas index.html, cambia el número de versión para que los móviles descarguen la nueva.
-const CACHE = 'ajedrez-dorado-v1';
+const CACHE = 'ajedrez-dorado-v3';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

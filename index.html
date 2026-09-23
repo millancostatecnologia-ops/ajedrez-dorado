@@ -316,6 +316,77 @@ button:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
 .ctype{font-size:11px;font-weight:700;color:#c7b58c;margin-top:-4px}
 .ccard .dia{width:calc(var(--w)*.64);height:calc(var(--w)*.64);box-shadow:0 0 0 2px #5b3b21}
 .cdesc{font-size:clamp(10.5px,2.8vw,13px);line-height:1.35;color:#e6dbc2}
+
+/* portada */
+#home{position:fixed;inset:0;z-index:40;display:flex;overflow-y:auto;color:#f2ead7;
+  background:radial-gradient(120% 75% at 50% 18%,#21574a 0%,#103329 48%,#061410 100%);
+  padding:calc(18px + env(safe-area-inset-top,0px)) 16px calc(22px + env(safe-area-inset-bottom,0px));transition:opacity .5s ease,visibility .5s}
+#home.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#home::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.018) 0 2px,transparent 2px 9px),repeating-linear-gradient(-45deg,rgba(0,0,0,.05) 0 2px,transparent 2px 9px)}
+.home-inner{position:relative;z-index:1;margin:auto;width:100%;max-width:580px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.home-title{margin:0;font-family:Grenze,Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(46px,14vw,78px);line-height:.92;letter-spacing:.005em;
+  background:linear-gradient(100deg,#b3800f 0%,#f2c956 30%,#fff6d6 46%,#f2c956 54%,#b3800f 100%);background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:titleShine 5.5s ease-in-out infinite;
+  filter:drop-shadow(0 3px 0 #3a2605) drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+@keyframes titleShine{0%{background-position:100% 0}55%,100%{background-position:0 0}}
+.home-sub{margin:0 0 2px;color:#b9cdbf;font-size:15px;font-weight:600}
+.scene{width:100%;margin:2px 0 4px}
+.scene svg{width:100%;height:auto;display:block;overflow:visible}
+.home-btns{display:grid;gap:10px;width:100%;max-width:320px}
+.hbtn{border:0;border-radius:16px;padding:16px 18px;font-weight:800;font-size:18px;cursor:pointer;transition:transform .12s,box-shadow .12s,background .15s}
+.hbtn.primary{background:linear-gradient(#f7d874,#d9a834);color:#2a1c05;box-shadow:0 4px 0 #8a5f0c,0 12px 26px rgba(0,0,0,.4)}
+.hbtn.primary:active{transform:translateY(3px);box-shadow:0 1px 0 #8a5f0c,0 6px 14px rgba(0,0,0,.4)}
+.hbtn.sec{background:rgba(255,255,255,.07);color:#f2ead7;box-shadow:inset 0 0 0 2px rgba(220,176,74,.55)}
+.hbtn.sec:hover{background:rgba(255,255,255,.12)}
+.hbtn:focus-visible{outline:3px solid #fff3c0;outline-offset:3px}
+.motes{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.motes span{position:absolute;bottom:-10px;width:5px;height:5px;border-radius:50%;background:#ffd970;box-shadow:0 0 10px 2px rgba(255,210,90,.6);opacity:0;animation:mote linear infinite}
+@keyframes mote{0%{transform:translateY(0);opacity:0}15%{opacity:.8}85%{opacity:.6}100%{transform:translateY(-105vh);opacity:0}}
+/* escena animada: ciclo de 7 s */
+.scene .blink{transform-box:fill-box;transform-origin:50% 50%;animation:blink 4.2s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.scene .sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 2.4s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.scene .bounce{transform-box:fill-box;transform-origin:50% 100%;animation:kb 1.1s ease-in-out infinite}
+@keyframes kb{0%,100%{transform:translateY(0) scale(1.04,.96)}50%{transform:translateY(-12px) scale(.97,1.03)}}
+.scene .arm{transform-box:fill-box}
+.scene .armL{transform-origin:100% 100%}.scene .armR{transform-origin:0 100%}
+.scene .cheer .armL{animation:cheerL 7s ease-in-out infinite}.scene .cheer .armR{animation:cheerR 7s ease-in-out infinite}
+@keyframes cheerL{0%,42%,82%,100%{transform:rotate(0)}46%,54%,62%,70%,78%{transform:rotate(28deg)}50%,58%,66%,74%{transform:rotate(-12deg)}}
+@keyframes cheerR{0%,42%,82%,100%{transform:rotate(0)}46%,54%,62%,70%,78%{transform:rotate(-28deg)}50%,58%,66%,74%{transform:rotate(12deg)}}
+.scene .wave .armL{animation:waveL .55s ease-in-out infinite alternate}
+@keyframes waveL{from{transform:rotate(-18deg)}to{transform:rotate(22deg)}}
+.scene .pawn-move{animation:pMove 7s ease-in-out infinite}
+@keyframes pMove{0%,11%{transform:translateX(0)}22%,29%{transform:translateX(60px)}40%,88%{transform:translateX(120px)}88.5%,100%{transform:translateX(0)}}
+.scene .pawn-hop{transform-box:fill-box;transform-origin:50% 100%;animation:pHop 7s infinite}
+@keyframes pHop{0%,10%{transform:translateY(0) scale(1)}11%{transform:translateY(0) scale(1.12,.86)}16.5%{transform:translateY(-58px) scale(.94,1.08)}22%{transform:translateY(0) scale(1.14,.85)}25%,28%{transform:translateY(0) scale(1)}
+  29%{transform:translateY(0) scale(1.12,.86)}34.5%{transform:translateY(-64px) scale(.94,1.08)}40%{transform:translateY(0) scale(1.16,.84)}43%,51%{transform:translateY(0) scale(1)}
+  55%{transform:translateY(-38px) rotate(-6deg)}59%{transform:translateY(0) scale(1.08,.92)}62%,64%{transform:translateY(0) scale(1)}68%{transform:translateY(-38px) rotate(6deg)}72%{transform:translateY(0) scale(1.08,.92)}75%,100%{transform:translateY(0) scale(1)}}
+.scene .pawn-shadow{transform-box:fill-box;transform-origin:50% 50%;animation:pShadow 7s infinite}
+@keyframes pShadow{0%,11%,22%,29%,40%,51%,59%,64%,72%,100%{transform:scale(1);opacity:1}16.5%,34.5%{transform:scale(.55);opacity:.5}55%,68%{transform:scale(.7);opacity:.7}}
+.scene .pawn-fade{animation:pFade 7s infinite}
+@keyframes pFade{0%,85%{opacity:1}87.5%,92%{opacity:0}97%,100%{opacity:1}}
+.scene .pcrown{transform-box:fill-box;transform-origin:50% 100%;animation:pCrown 7s infinite}
+@keyframes pCrown{0%,41%{transform:scale(0) translateY(10px);opacity:0}45%{transform:scale(1.35) translateY(-6px);opacity:1}49%,84%{transform:scale(1) translateY(0);opacity:1}86%,100%{transform:scale(0);opacity:0}}
+.scene .pface-n{animation:faceN 7s infinite}.scene .pface-h{animation:faceH 7s infinite}
+@keyframes faceN{0%,41%,86%,100%{opacity:1}42%,85%{opacity:0}}
+@keyframes faceH{0%,41%,86%,100%{opacity:0}42%,85%{opacity:1}}
+.scene .tile-glow{animation:glow 2s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.15}to{opacity:.55}}
+.scene .spark{transform-box:view-box;transform-origin:0 0;animation:spark 7s infinite}
+@keyframes spark{0%,39%{transform:rotate(var(--a)) translateY(0) scale(.2);opacity:0}42%{transform:rotate(var(--a)) translateY(-16px) scale(1.1);opacity:1}56%,100%{transform:rotate(var(--a)) translateY(-54px) scale(.4);opacity:0}}
+.scene .ring{transform-box:view-box;transform-origin:0 0;animation:ring2 7s infinite}
+@keyframes ring2{0%,39%{transform:scale(.2);opacity:0}41%{transform:scale(.5);opacity:1}56%,100%{transform:scale(3.2);opacity:0}}
+.scene .poof circle{transform-box:fill-box;transform-origin:50% 50%;animation:poof 7s infinite}
+@keyframes poof{0%,85%{transform:scale(0);opacity:0}88%{transform:scale(1);opacity:.9}95%,100%{transform:scale(1.5);opacity:0}}
+.scene .sweat{animation:sweat 7s infinite}
+@keyframes sweat{0%,42%{opacity:0;transform:translateY(-4px)}46%{opacity:1;transform:translateY(0)}80%{opacity:1;transform:translateY(8px)}84%,100%{opacity:0;transform:translateY(10px)}}
+.scene .fret .armL,.scene .fret .armR{animation:fret 7s ease-in-out infinite}
+.scene .fret .armL{transform-origin:100% 0}.scene .fret .armR{transform-origin:0 0}
+@keyframes fret{0%,42%,84%,100%{transform:rotate(0)}46%,54%,62%,70%,78%{transform:rotate(8deg)}50%,58%,66%,74%{transform:rotate(-8deg)}}
+.scene .rook .pupil{animation:look 7s ease-in-out infinite}
+@keyframes look{0%,8%{transform:translateX(0)}14%,100%{transform:translateX(-1.6px)}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -333,6 +404,18 @@ button:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
   </defs>
 </svg>
 
+<div id="home" role="dialog" aria-labelledby="homeTitle">
+  <div class="motes" id="motes" aria-hidden="true"></div>
+  <div class="home-inner">
+    <h1 class="home-title" id="homeTitle">Ajedrez Dorado</h1>
+    <p class="home-sub">Casillas doradas, mejoras y personajes</p>
+    <div class="scene" id="scene" aria-hidden="true"></div>
+    <div class="home-btns">
+      <button class="hbtn primary" id="homeNew">Nueva partida</button>
+      <button class="hbtn sec" id="homeOpt">Opciones</button>
+    </div>
+  </div>
+</div>
 <div id="app">
   <header class="top">
     <div class="brand"><span id="logo"></span>Ajedrez Dorado</div>
@@ -364,6 +447,7 @@ button:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
 <div class="modal" id="mMenu" data-dismiss><div class="sheet">
   <h2>Menú</h2>
   <div class="menu-list" style="margin-top:12px">
+    <button data-act="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Menú principal</button>
     <button data-act="new"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Nueva partida</button>
     <button data-act="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Ajustes</button>
     <button data-act="rules"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg>Cómo se juega</button>
@@ -431,7 +515,7 @@ button:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent);o
 <div class="modal" id="mOver" data-dismiss><div class="sheet center">
   <div id="overIcon"></div>
   <h2 id="overTitle"></h2><p class="sub" id="overReason"></p>
-  <div class="btns"><button class="btn primary" id="overNew">Nueva partida</button><button class="btn" data-close>Ver el tablero</button></div>
+  <div class="btns"><button class="btn primary" id="overNew">Nueva partida</button><button class="btn" id="overHome">Menú principal</button><button class="btn" data-close>Ver el tablero</button></div>
 </div></div>
 
 <!-- reglas -->
@@ -923,7 +1007,7 @@ function diagram(t,c,u,lv){
 // ---- state ----
 const SAVE_KEY='ajedrez-dorado-v1',SET_KEY='ajedrez-dorado-ajustes',SEEN_KEY='ajedrez-dorado-visto';
 const G={st:null,hist:[],cfg:{mode:'ai',pick:'w',human:'w',level:'normal',clock:0,respawn:true,heroA:'bishop',heroB:'rand'},clock:{w:0,b:0},flipped:false,sel:-1,legal:[],
-  busy:false,thinking:false,over:null,modal:0,token:0,movedId:null,ab:null,abl:[],openChip:null,ovTab:'w',
+  busy:false,thinking:false,over:null,modal:0,home:true,token:0,movedId:null,ab:null,abl:[],openChip:null,ovTab:'w',
   settings:Object.assign({board:'wood',theme:'auto',sound:true,hints:true,coords:true,autoflip:false},store.get(SET_KEY,{}))};
 const isHuman=c=>G.cfg.mode==='2p'||c===G.cfg.human;
 function refreshLegal(){G.legal=G.over?[]:legalMoves(G.st);G.abl=G.over?[]:abilityMoves(G.st)}
@@ -1079,6 +1163,62 @@ function choice(title,sub,opts,cancel){return new Promise(res=>{
   const done=v=>{box.onclick=null;$('#chCancel').onclick=null;closeModal('mChoice');res(v)};
   box.onclick=e=>{const b=e.target.closest('.chbtn');if(b)done(opts[+b.dataset.j].key)};
   $('#chCancel').style.display=cancel?'':'none';$('#chCancel').onclick=()=>done(null);openModal('mChoice')})}
+
+// ---- portada: escena animada ----
+function showHome(){G.home=true;$('#home').classList.remove('hidden')}
+function hideHome(){G.home=false;$('#home').classList.add('hidden')}
+function homeScene(){
+  const K='#2a1c10';
+  const body=(t,fill,stroke)=>`<g fill="${fill}" stroke="${stroke}" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">${BASE}${SHAPES[t].replace(/EYE/g,stroke)}</g>`;
+  const eyes=(pts,s,delay)=>`<g class="blink" style="animation-delay:${delay}s">${pts.map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="${4.2*s}" ry="${5.2*s}" fill="#fff" stroke="${K}" stroke-width="1.6"/><circle class="pupil" cx="${x}" cy="${y+.8*s}" r="${2.3*s}" fill="${K}"/><circle cx="${x+.9*s}" cy="${y-.7*s}" r="${.8*s}" fill="#fff"/>`).join('')}</g>`;
+  const smile=(x,y,w,c=K)=>`<path d="M${x-w} ${y}Q${x} ${y+w*.95} ${x+w} ${y}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"/>`;
+  const cheeks=(a,b,y,r=3.2)=>`<ellipse cx="${a}" cy="${y}" rx="${r}" ry="${r*.62}" fill="#ff8f7a" opacity=".55"/><ellipse cx="${b}" cy="${y}" rx="${r}" ry="${r*.62}" fill="#ff8f7a" opacity=".55"/>`;
+  const arm=(side,sx,sy,hx,hy,skin)=>{const mx=(sx+hx)/2+(side==='L'?-3:3),my=Math.min(sy,hy)-1;
+    return `<g class="arm arm${side}"><path d="M${sx} ${sy}Q${mx} ${my} ${hx} ${hy}" fill="none" stroke="${K}" stroke-width="6.5" stroke-linecap="round"/><path d="M${sx} ${sy}Q${mx} ${my} ${hx} ${hy}" fill="none" stroke="${skin}" stroke-width="3.2" stroke-linecap="round"/><circle cx="${hx}" cy="${hy}" r="4.3" fill="${skin}" stroke="${K}" stroke-width="1.8"/></g>`};
+  const cream='#f6ecd6',dark='#55585f';
+  let tiles='';
+  for(let i=-1;i<=8;i++){const x=i*60,gold=i===4;
+    tiles+=`<rect x="${x}" y="168" width="60" height="28" fill="${gold?'url(#tileGold)':(i&1?'#a97a4e':'#ecd7b1')}"/><rect x="${x}" y="196" width="60" height="11" fill="${gold?'#8a5f0c':(i&1?'#6e4a2b':'#b8966a')}"/>`}
+  const sparks=Array.from({length:10},(_,k)=>`<path class="spark" style="--a:${k*36}deg" d="M0 -6L1.6 -1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z" fill="#ffe28a"/>`).join('');
+  return `<svg viewBox="-20 50 510 168" xmlns="http://www.w3.org/2000/svg">
+  <defs><radialGradient id="tileGold" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#fff5c8"/><stop offset=".5" stop-color="#f2c956"/><stop offset="1" stop-color="#b3800f"/></radialGradient>
+  <radialGradient id="spot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe7a0" stop-opacity=".35"/><stop offset="1" stop-color="#ffe7a0" stop-opacity="0"/></radialGradient></defs>
+  <ellipse cx="240" cy="120" rx="260" ry="110" fill="url(#spot)"/>
+  <rect x="-40" y="164" width="560" height="6" fill="rgba(0,0,0,.25)"/>
+  ${tiles}
+  <rect x="-40" y="168" width="560" height="39" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1"/>
+  <ellipse class="tile-glow" opacity=".35" cx="270" cy="178" rx="44" ry="16" fill="#fff0b0"/>
+  <text x="270" y="189" text-anchor="middle" font-size="20" fill="rgba(105,60,0,.55)">✦</text>
+  <g fill="rgba(0,0,0,.28)"><ellipse cx="30" cy="169" rx="26" ry="4.5"/><ellipse cx="90" cy="169" rx="27" ry="4.5"/><ellipse cx="330" cy="169" rx="26" ry="4.5"/><ellipse cx="450" cy="169" rx="26" ry="4.5"/></g>
+  <!-- Dama -->
+  <g transform="translate(-9 98.6) scale(.78)"><g class="sway cheer" style="animation-delay:-.7s">
+    ${body('q','url(#gw0)',K)}
+  </g></g>
+  <!-- Rey -->
+  <g transform="translate(50 96.8) scale(.8)"><g class="sway cheer" style="animation-delay:-1.9s">
+    ${body('k','url(#gw1)',K)}
+  </g></g>
+  <!-- Peón protagonista -->
+  <g class="pawn-move">
+    <ellipse class="pawn-shadow" cx="150" cy="169" rx="21" ry="4" fill="rgba(0,0,0,.3)"/>
+    <g class="pawn-fade"><g transform="translate(116 107.5) scale(.68)"><g class="pawn-hop cheer">
+      ${body('p','url(#gw0)',K)}
+      <g class="pcrown"><path d="M39 21L37 7l7 6 6-10 6 10 7-6-2 14Z" fill="url(#gw1)" stroke="${K}" stroke-width="2.2" stroke-linejoin="round"/><circle cx="50" cy="3" r="2.6" fill="#ff6b6b" stroke="${K}" stroke-width="1.2"/></g>
+    </g></g></g>
+  </g>
+  <!-- chispas de la casilla dorada -->
+  <g transform="translate(270 146)"><circle class="ring" r="12" fill="none" stroke="#ffe28a" stroke-width="3"/>${sparks}</g>
+  <g class="poof" transform="translate(270 150)"><circle cx="-10" cy="4" r="10" fill="#fff"/><circle cx="8" cy="-4" r="12" fill="#fff"/><circle cx="12" cy="8" r="8" fill="#fff"/></g>
+  <!-- Caballo -->
+  <g transform="translate(290 96.8) scale(.8)"><g class="bounce wave">
+    ${body('n','url(#gw0)',K)}
+  </g></g>
+  <!-- Torre negra, preocupada -->
+  <g transform="translate(411 98.6) scale(.78)"><g class="sway fret rook" style="animation-delay:-.4s;animation-duration:3.1s">
+    ${body('r','url(#gb0)','#0b0b0d')}
+  </g></g>
+</svg>`;
+}
 // ---- cartas de mejora ----
 const ctype=t=>t==='k'?'Rey':TN[t].pl;
 function cardHTML(u0,t,c,lv,down){const u=upView(t,u0.id);return `<div class="ccard${down?' down':''}" tabindex="0" role="button" aria-label="${esc(u.name)}"><div class="clift"><div class="cinner">
@@ -1125,7 +1265,7 @@ async function cardReveal(c,t,opts,id,title,sub){
 }
 // ---- game flow ----
 function newGame(cfg){
-  G.token++;G.cfg=Object.assign({},G.cfg,cfg||{});
+  G.token++;hideHome();G.cfg=Object.assign({},G.cfg,cfg||{});
   if(G.cfg.mode==='ai')G.cfg.human=G.cfg.pick==='rand'?(Math.random()<.5?'w':'b'):G.cfg.pick;
   const rh=v=>!v||v==='rand'?HERO_IDS[Math.floor(Math.random()*HERO_IDS.length)]:v,hA=rh(G.cfg.heroA),hB=rh(G.cfg.heroB);
   const hero=G.cfg.mode==='ai'?{[G.cfg.human]:hA,[opp(G.cfg.human)]:hB}:{w:hA,b:hB};
@@ -1137,7 +1277,7 @@ function newGame(cfg){
 }
 let lastT=performance.now();
 function tickClock(){const now=performance.now(),dt=now-lastT;lastT=now;
-  if(!G.cfg.clock||G.over||G.modal||!G.st||G.st.ply===0)return;
+  if(!G.cfg.clock||G.over||G.modal||G.home||!G.st||G.st.ply===0)return;
   const c=G.st.turn;G.clock[c]=Math.max(0,G.clock[c]-dt);
   if(G.clock[c]<=0){G.token++;G.busy=false;G.thinking=false;endGame({winner:opp(c),reason:'Tiempo agotado'});return}
   renderClocks()}
@@ -1320,8 +1460,10 @@ $('#btnNew').onclick=()=>openNew();
 $('#btnMenu').onclick=()=>openModal('mMenu');
 $('#btnUpg').onclick=()=>{ovTab(G.cfg.mode==='ai'?G.cfg.human:G.st.turn);openModal('mOverview')};
 $('#overNew').onclick=()=>{closeModal('mOver');openNew()};
+$('#overHome').onclick=()=>{closeModal('mOver');showHome()};
 $('#mMenu').addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;closeModal('mMenu');
-  if(a==='new')openNew();
+  if(a==='home'){G.token++;G.busy=false;G.thinking=false;G.ab=null;G.sel=-1;save();showHome()}
+  else if(a==='new')openNew();
   else if(a==='settings')openSettings();
   else if(a==='rules')openModal('mRules');
   else if(a==='resign'){if(G.over){toast('La partida ya ha terminado');return}
@@ -1353,7 +1495,8 @@ function openHeroPicker(slot){
 }
 $$('.hpick').forEach(b=>b.onclick=()=>openHeroPicker(b.dataset.slot));
 function openNew(){draft={mode:G.cfg.mode,pick:G.cfg.pick||'w',level:G.cfg.level,clock:String(G.cfg.clock),respawn:G.cfg.respawn?'1':'0',heroA:G.cfg.heroA||'rand',heroB:G.cfg.heroB||'rand'};syncNew();openModal('mNew')}
-$('#startBtn').onclick=()=>{closeModal('mNew');newGame({mode:draft.mode,pick:draft.pick,level:draft.level,clock:+draft.clock,respawn:draft.respawn==='1',heroA:draft.heroA,heroB:draft.heroB})};
+$('#startBtn').onclick=()=>{closeModal('mNew');newGame({mode:draft.mode,pick:draft.pick,level:draft.level,clock:+draft.clock,respawn:draft.respawn==='1',heroA:draft.heroA,heroB:draft.heroB});
+  if(!store.get(SEEN_KEY,false)){store.set(SEEN_KEY,true);setTimeout(()=>openModal('mRules'),600)}};
 function applyTheme(){const t=G.settings.theme;if(t==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t)}
 segInit('#mSet','data-s',k=>G.settings[k],(k,v)=>{G.settings[k]=v;store.set(SET_KEY,G.settings);applyTheme();render()});
 $$('#mSet input[data-t]').forEach(inp=>inp.addEventListener('change',()=>{G.settings[inp.dataset.t]=inp.checked;store.set(SET_KEY,G.settings);
@@ -1375,9 +1518,13 @@ $('#logo').innerHTML=pieceSVG('k','w',1);
   g.innerHTML=`<stop offset="0" stop-color="${shade(c,.45)}"/><stop offset=".55" stop-color="${c}"/><stop offset="1" stop-color="${shade(c,-.45)}"/>`;defs.appendChild(g)}}
 $('#rulesHeroes').innerHTML=HERO_IDS.map(id=>`<div class="urow"><div class="uicon">${heroSVG(id)}</div><div><div class="ut">${HERO[id].n}</div><div class="udesc">${HERO[id].d}</div></div></div>`).join('');
 applyTheme();buildSquares();
-if(!load())newGame();else{render();if(!checkStuck()&&!G.over&&!isHuman(G.st.turn))aiTurn()}
+if(!load()){G.st=initState();refreshLegal()}
+render();
 fit();
-if(!store.get(SEEN_KEY,false)){store.set(SEEN_KEY,true);setTimeout(()=>openModal('mRules'),300)}
+$('#scene').innerHTML=homeScene();
+$('#motes').innerHTML=Array.from({length:18},()=>`<span style="left:${(Math.random()*100).toFixed(1)}%;animation-duration:${(8+Math.random()*9).toFixed(1)}s;animation-delay:${(-Math.random()*16).toFixed(1)}s;transform:scale(${(.5+Math.random()*.8).toFixed(2)})"></span>`).join('');
+$('#homeNew').onclick=()=>openNew();
+$('#homeOpt').onclick=()=>openSettings();
 </script>
 <script>
 if('serviceWorker' in navigator)window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})});
