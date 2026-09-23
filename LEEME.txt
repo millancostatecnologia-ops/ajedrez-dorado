@@ -1,0 +1,26 @@
+AJEDREZ DORADO - VERSIÓN SIN CONEXIÓN
+=====================================
+
+Archivos (súbelos TODOS a la raíz del repositorio, sin carpetas):
+  index.html             el juego
+  sw.js                  guarda el juego en el móvil para usarlo sin conexión
+  manifest.webmanifest   nombre, colores e icono de la app
+  icon-192.png, icon-512.png, apple-touch-icon.png   iconos
+
+Pasos:
+ 1. Crea una cuenta gratuita en https://github.com e inicia sesión.
+ 2. Pulsa "+" (arriba a la derecha) > "New repository".
+    Nombre: ajedrez-dorado · Público · Create repository.
+ 3. En el repositorio vacío: "uploading an existing file".
+    Arrastra (o selecciona) los 6 archivos > "Commit changes".
+ 4. Settings > Pages > Source: "Deploy from a branch",
+    Branch: main, carpeta / (root) > Save.
+ 5. Espera 1-2 minutos. La dirección será:
+    https://TU-USUARIO.github.io/ajedrez-dorado/
+ 6. En el iPhone, abre esa dirección en Safari (con conexión),
+    espera a que cargue y pulsa Compartir > "Añadir a pantalla de inicio".
+ 7. Abre la app desde el icono una vez con conexión. Desde entonces
+    funciona también en modo avión.
+
+Para actualizar el juego más adelante: sube el nuevo index.html y, en sw.js,
+cambia 'ajedrez-dorado-v1' por 'ajedrez-dorado-v2' (y súbelo también).
